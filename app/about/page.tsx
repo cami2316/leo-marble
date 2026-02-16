@@ -1,37 +1,12 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import type { Metadata } from 'next'
+import { siteConfig } from '@/lib/siteConfig'
 
 export const metadata: Metadata = {
-  title: 'About Biaggio Flooring - Family Owned Remodeling Experts',
-  description:
-    'Family-owned flooring and bathroom remodeling company serving Central Florida with precision craftsmanship and trusted service.',
+  title: `About ${siteConfig.companyName} - Family Owned Remodeling Experts`,
+  description: `Family-owned ${siteConfig.niche} company serving ${siteConfig.region} with precision craftsmanship and trusted service.`,
 }
-
-const values = [
-  {
-    title: 'Precision Craftsmanship',
-    description:
-      'Every layout, cut, and installation follows strict alignment and finish standards.',
-  },
-  {
-    title: 'Client Relationships',
-    description:
-      'We treat every home with respect, clear communication, and professional care.',
-  },
-  {
-    title: 'Transparent Pricing',
-    description:
-      'Detailed written estimates and honest guidance before any project begins.',
-  },
-]
-
-const stats = [
-  { value: '15+', label: 'Years Serving Central Florida' },
-  { value: '500+', label: 'Completed Projects' },
-  { value: 'Licensed', label: '& Insured' },
-  { value: '5-Star', label: 'Client Satisfaction' },
-]
 
 export default function About() {
   return (
@@ -41,8 +16,8 @@ export default function About() {
 
         <div className="absolute inset-0">
           <Image
-            src="/images/bathrooms/bath2.jpg"
-            alt="Tile installation craftsmanship"
+            src="/images/services/bath2.jpg"
+            alt="Installation craftsmanship"
             fill
             priority
             className="object-cover scale-105"
@@ -61,9 +36,8 @@ export default function About() {
           </h1>
 
           <p className="text-lg text-white/90">
-            Biaggio Flooring is a family-owned remodeling company dedicated to
-            delivering refined flooring and bathroom transformations across
-            Central Florida.
+            {siteConfig.companyName} is a family-owned remodeling company dedicated to
+            delivering refined transformations across {siteConfig.region}.
           </p>
         </div>
 
@@ -81,7 +55,7 @@ export default function About() {
             <div className="space-y-5 text-brand-charcoal text-lg">
 
               <p>
-                For over 15 years, Biaggio Flooring has helped homeowners
+                For over {siteConfig.yearsExperience} years, {siteConfig.companyName} has helped homeowners
                 transform their spaces through precision installation and
                 professional remodeling standards.
               </p>
@@ -89,8 +63,7 @@ export default function About() {
               <p>
                 Our company was built on one simple principle: your home deserves
                 workmanship that lasts. Every project is approached with detailed
-                planning, proper waterproofing techniques, and premium finish
-                standards.
+                planning, proper techniques, and premium finish standards.
               </p>
 
               <p>
@@ -105,8 +78,8 @@ export default function About() {
 
           <div className="relative h-[440px] rounded-[36px] overflow-hidden shadow-xl">
             <Image
-              src="/images/flooring/floor 2.jpg"
-              alt="Premium hardwood flooring installation"
+              src="/images/services/floor 2.jpg"
+              alt="Premium installation"
               fill
               className="object-cover"
             />
@@ -131,7 +104,7 @@ export default function About() {
           </div>
 
           <div className="grid md:grid-cols-3 gap-8">
-            {values.map((value) => (
+            {siteConfig.values.map((value) => (
               <div
                 key={value.title}
                 className="p-8 rounded-3xl border border-brand-charcoal/10 shadow-premium"
@@ -158,7 +131,7 @@ export default function About() {
 
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 text-center">
 
-            {stats.map((stat) => (
+            {siteConfig.stats.map((stat) => (
               <div key={stat.label}>
                 <p className="text-4xl font-semibold text-brand-accent mb-2">
                   {stat.value}
@@ -182,7 +155,7 @@ export default function About() {
         <div className="container mx-auto px-4 max-w-4xl text-center">
 
           <h2 className="text-3xl md:text-4xl font-semibold text-brand-charcoal mb-6">
-            The Biaggio Difference
+            The {siteConfig.companyName} Difference
           </h2>
 
           <p className="text-lg text-brand-charcoal mb-8">

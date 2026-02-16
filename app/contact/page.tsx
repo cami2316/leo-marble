@@ -1,11 +1,11 @@
 import Image from 'next/image'
 import type { Metadata } from 'next'
 import ContactForm from '@/components/ContactForm'
+import { siteConfig } from '@/lib/siteConfig'
 
 export const metadata: Metadata = {
-  title: 'Contact Biaggio Flooring - Request Free Estimate',
-  description:
-    'Request a free flooring or bathroom remodeling estimate in Central Florida. Professional consultation and clear project planning.',
+  title: `Contact ${siteConfig.companyName} - Request Free Estimate`,
+  description: `Request a free ${siteConfig.niche} estimate in ${siteConfig.region}. Professional consultation and clear project planning.`,
 }
 
 export default function Contact() {
@@ -16,7 +16,7 @@ export default function Contact() {
 
         <div className="absolute inset-0">
           <Image
-            src="/images/projects/bath04.jpg"
+            src="/images/portfolio/bath04.jpg"
             alt="Luxury remodeling consultation"
             fill
             className="object-cover scale-105"
@@ -70,14 +70,14 @@ export default function Contact() {
                 </p>
 
                 <a
-                  href="tel:3214425003"
+                  href={`tel:${siteConfig.phone.replace(/\s/g, '')}`}
                   className="text-xl font-semibold text-brand-charcoal hover:text-brand-accent transition"
                 >
-                  321 4425003
+                  {siteConfig.phone}
                 </a>
 
                 <p className="text-sm text-brand-charcoal/70">
-                  Mon–Fri 8AM–6PM • Sat 9AM–4PM
+                  {siteConfig.businessHours}
                 </p>
               </div>
 
@@ -87,10 +87,10 @@ export default function Contact() {
                 </p>
 
                 <a
-                  href="mailto:biaggioflooringllc@gmail.com"
+                  href={`mailto:${siteConfig.email}`}
                   className="text-xl font-semibold text-brand-charcoal hover:text-brand-accent transition"
                 >
-                  biaggioflooringllc@gmail.com
+                  {siteConfig.email}
                 </a>
               </div>
 
@@ -100,7 +100,7 @@ export default function Contact() {
                 </p>
 
                 <p className="text-xl font-semibold text-brand-charcoal">
-                  Central Florida
+                  {siteConfig.region}
                 </p>
               </div>
 
@@ -126,7 +126,7 @@ export default function Contact() {
             <div className="rounded-3xl bg-brand-white p-6 border border-brand-charcoal/10 shadow-premium">
 
               <h3 className="text-lg font-semibold text-brand-charcoal mb-4">
-                Why Homeowners Choose Biaggio
+                Why Homeowners Choose {siteConfig.companyName}
               </h3>
 
               <ul className="space-y-2 text-brand-charcoal">
@@ -141,8 +141,8 @@ export default function Contact() {
             {/* IMAGE */}
             <div className="relative h-64 rounded-3xl overflow-hidden shadow-xl">
               <Image
-                src="/images/flooring/floor 03.jpg"
-                alt="Premium flooring installation"
+                src="/images/services/floor 03.jpg"
+                alt="Premium installation"
                 fill
                 className="object-cover"
               />

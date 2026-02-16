@@ -4,6 +4,7 @@ import './globals.css'
 
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
+import { siteConfig } from '@/lib/siteConfig'
 
 const displayFont = Playfair_Display({
   subsets: ['latin'],
@@ -19,30 +20,27 @@ const bodyFont = Source_Sans_3({
 
 export const metadata: Metadata = {
   title: {
-    default: 'Biaggio Flooring | Premium Flooring & Bathroom Remodeling',
-    template: '%s | Biaggio Flooring',
+    default: `${siteConfig.companyName} | ${siteConfig.heroTitle}`,
+    template: `%s | ${siteConfig.companyName}`,
   },
 
-  description:
-    'Luxury flooring installation and bathroom remodeling in Central Florida. Trusted craftsmanship with over 15 years of experience.',
+  description: siteConfig.heroSubtitle,
 
   keywords: [
-    'flooring installation Orlando',
-    'bathroom remodeling Central Florida',
+    `${siteConfig.niche} ${siteConfig.city}`,
+    `${siteConfig.niche} ${siteConfig.region}`,
     'tile installation',
-    'shower remodeling',
-    'hardwood flooring Orlando',
+    'premium remodeling',
   ],
 
   openGraph: {
-    title: 'Biaggio Flooring',
-    description:
-      'Premium flooring installation and bathroom remodeling in Central Florida.',
-    url: 'https://biaggioflooring.com',
-    siteName: 'Biaggio Flooring',
+    title: siteConfig.companyName,
+    description: siteConfig.heroSubtitle,
+    url: siteConfig.siteUrl,
+    siteName: siteConfig.companyName,
     images: [
       {
-        url: '/images/hero/place_1.jpg',
+        url: siteConfig.defaultImage,
         width: 1200,
         height: 630,
       },

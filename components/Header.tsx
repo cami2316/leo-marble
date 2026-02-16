@@ -4,6 +4,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useEffect, useState } from 'react'
+import { siteConfig } from '@/lib/siteConfig'
 
 export default function Header() {
   const pathname = usePathname()
@@ -39,7 +40,7 @@ export default function Header() {
         <Link href="/" className="relative flex items-center">
           <Image
             src="/logo/logo%20white.svg"
-            alt="Biaggio Flooring"
+            alt={siteConfig.companyName}
             width={isScrolled ? 140 : 160}
             height={50}
             className="transition-all duration-300"

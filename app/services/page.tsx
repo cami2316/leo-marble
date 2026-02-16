@@ -1,11 +1,11 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import type { Metadata } from 'next'
+import { siteConfig } from '@/lib/siteConfig'
 
 export const metadata: Metadata = {
-  title: 'Services - Flooring Installation & Bathroom Remodeling',
-  description:
-    'Professional flooring installation, bathroom remodeling, and custom tile work in Central Florida.',
+  title: `Services - ${siteConfig.niche}`,
+  description: `Professional ${siteConfig.niche} in ${siteConfig.region}.`,
 }
 
 export default function Services() {
@@ -53,7 +53,7 @@ export default function Services() {
             </h2>
 
             <p className="text-brand-charcoal mb-8">
-              We install premium flooring systems designed to enhance aesthetics while ensuring long-term performance in Central Florida homes.
+              We install premium systems designed to enhance aesthetics while ensuring long-term performance in {siteConfig.region} homes.
             </p>
 
             <ul className="space-y-4">
@@ -74,8 +74,8 @@ export default function Services() {
 
           <div className="relative h-[440px] rounded-[36px] overflow-hidden shadow-premium">
             <Image
-              src="/images/flooring/floor1.jpg"
-              alt="Luxury hardwood flooring installation"
+              src="/images/services/floor1.jpg"
+              alt="Premium installation"
               fill
               className="object-cover"
             />
@@ -90,8 +90,8 @@ export default function Services() {
 
           <div className="relative h-[440px] rounded-[36px] overflow-hidden shadow-premium order-2 lg:order-1">
             <Image
-              src="/images/bathrooms/bath.jpg"
-              alt="Bathroom remodeling with custom tile shower"
+              src="/images/services/bath.jpg"
+              alt="Bathroom remodeling"
               fill
               className="object-cover"
             />
@@ -163,8 +163,8 @@ export default function Services() {
 
           <div className="relative h-[440px] rounded-[36px] overflow-hidden shadow-premium">
             <Image
-              src="/images/bathrooms/bath04.jpg"
-              alt="Decorative tile installation"
+              src="/images/services/bath04.jpg"
+              alt="Decorative installation"
               fill
               className="object-cover"
             />

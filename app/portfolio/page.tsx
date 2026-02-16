@@ -2,11 +2,11 @@ import Image from 'next/image'
 import Link from 'next/link'
 import type { Metadata } from 'next'
 import Gallery from '@/components/Gallery'
+import { siteConfig } from '@/lib/siteConfig'
 
 export const metadata: Metadata = {
-  title: 'Portfolio - Finished Flooring & Bathroom Projects',
-  description:
-    'Explore Biaggio Flooring’s completed remodeling and flooring projects across Central Florida.',
+  title: `Portfolio - Finished ${siteConfig.niche} Projects`,
+  description: `Explore ${siteConfig.companyName}'s completed remodeling projects across ${siteConfig.region}.`,
 }
 
 export default function Portfolio() {
@@ -14,73 +14,73 @@ export default function Portfolio() {
   const portfolioItems = [
     {
       id: 1,
-      title: 'Warm Hardwood Living Space',
-      category: 'Flooring' as const,
-      imageSrc: '/images/flooring/floor1.jpg',
-      alt: 'Hardwood floor installation',
+      title: 'Warm Living Space',
+      category: 'Services' as const,
+      imageSrc: '/images/services/floor1.jpg',
+      alt: 'Premium installation',
     },
     {
       id: 2,
-      title: 'Contemporary Plank Flooring',
-      category: 'Flooring' as const,
-      imageSrc: '/images/flooring/floor 2.jpg',
-      alt: 'Luxury vinyl plank flooring',
+      title: 'Contemporary Installation',
+      category: 'Services' as const,
+      imageSrc: '/images/services/floor 2.jpg',
+      alt: 'Luxury installation',
     },
     {
       id: 3,
-      title: 'Statement Tile Floor',
-      category: 'Flooring' as const,
-      imageSrc: '/images/flooring/floor 03.jpg',
-      alt: 'Decorative tile flooring',
+      title: 'Statement Details',
+      category: 'Services' as const,
+      imageSrc: '/images/services/floor 03.jpg',
+      alt: 'Decorative finish',
     },
     {
       id: 4,
-      title: 'Custom Shower Installation',
-      category: 'Bathrooms' as const,
-      imageSrc: '/images/bathrooms/bath.jpg',
-      alt: 'Luxury shower remodel',
+      title: 'Custom Installation',
+      category: 'Services' as const,
+      imageSrc: '/images/services/bath.jpg',
+      alt: 'Luxury remodel',
     },
     {
       id: 5,
-      title: 'Spa Inspired Bathroom',
-      category: 'Bathrooms' as const,
-      imageSrc: '/images/bathrooms/bath2.jpg',
-      alt: 'Bathroom remodel with premium finishes',
+      title: 'Spa Inspired Design',
+      category: 'Services' as const,
+      imageSrc: '/images/services/bath2.jpg',
+      alt: 'Premium finishes',
     },
     {
       id: 6,
-      title: 'Modern Tile Statement Wall',
-      category: 'Bathrooms' as const,
-      imageSrc: '/images/bathrooms/bath03.jpg',
-      alt: 'Tile wall installation',
+      title: 'Modern Statement Wall',
+      category: 'Services' as const,
+      imageSrc: '/images/services/bath03.jpg',
+      alt: 'Wall installation',
     },
     {
       id: 7,
-      title: 'Luxury Shower Niche Detail',
-      category: 'Bathrooms' as const,
-      imageSrc: '/images/bathrooms/bath04.jpg',
-      alt: 'Custom shower niche',
+      title: 'Luxury Detail Work',
+      category: 'Services' as const,
+      imageSrc: '/images/services/bath04.jpg',
+      alt: 'Custom details',
     },
     {
       id: 8,
-      title: 'Completed Flooring Project',
-      category: 'Projects' as const,
-      imageSrc: '/images/projects/floor1.jpg',
-      alt: 'Finished flooring project',
+      title: 'Completed Project',
+      category: 'Portfolio' as const,
+      imageSrc: '/images/portfolio/floor1.jpg',
+      alt: 'Finished project',
     },
     {
       id: 9,
-      title: 'Finished Bathroom Remodel',
-      category: 'Projects' as const,
-      imageSrc: '/images/projects/bath.jpg',
-      alt: 'Completed bathroom remodel',
+      title: 'Finished Remodel',
+      category: 'Portfolio' as const,
+      imageSrc: '/images/portfolio/bath.jpg',
+      alt: 'Completed remodel',
     },
     {
       id: 10,
-      title: 'Custom Tile Installation Project',
-      category: 'Projects' as const,
-      imageSrc: '/images/projects/bath04.jpg',
-      alt: 'Custom tile project',
+      title: 'Custom Installation Project',
+      category: 'Portfolio' as const,
+      imageSrc: '/images/portfolio/bath04.jpg',
+      alt: 'Custom project',
     },
   ]
 
@@ -91,7 +91,7 @@ export default function Portfolio() {
 
         <div className="absolute inset-0">
           <Image
-            src="/images/projects/bath04.jpg"
+            src="/images/portfolio/bath04.jpg"
             alt="Luxury remodeling portfolio"
             fill
             className="object-cover scale-105"
@@ -145,12 +145,7 @@ export default function Portfolio() {
 
         <div className="container mx-auto px-4 grid md:grid-cols-4 gap-8 text-center">
 
-          {[
-            { value: '500+', label: 'Projects Completed' },
-            { value: '15+', label: 'Years Experience' },
-            { value: 'Licensed', label: '& Insured' },
-            { value: '5-Star', label: 'Client Reviews' },
-          ].map((stat) => (
+          {siteConfig.stats.map((stat) => (
             <div
               key={stat.label}
               className="rounded-3xl p-8 shadow-premium border border-brand-charcoal/10"

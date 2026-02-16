@@ -2,56 +2,25 @@ import Image from 'next/image'
 import Link from 'next/link'
 import type { Metadata } from 'next'
 import SplashSection from '@/components/SplashSection'
+import { siteConfig } from '@/lib/siteConfig'
 
 export const metadata: Metadata = {
-  title: 'Biaggio Flooring - Premium Flooring & Bathroom Remodeling in Central Florida',
-  description:
-    'Premium flooring installation and bathroom remodeling in Central Florida. Over 15 years of craftsmanship, precision, and trusted service.',
+  title: `${siteConfig.companyName} - ${siteConfig.heroTitle}`,
+  description: siteConfig.heroSubtitle,
 }
-
-const trustStats = [
-  { value: '15+', label: 'Years Experience' },
-  { value: '500+', label: 'Completed Projects' },
-  { value: 'Licensed', label: '& Insured' },
-  { value: '5-Star', label: 'Customer Rating' },
-]
-
-const serviceHighlights = [
-  {
-    title: 'Flooring Installation',
-    description:
-      'Hardwood, LVP, laminate, and tile installed with precision and long-lasting performance.',
-    image: '/images/flooring/floor1.jpg',
-    alt: 'Premium hardwood flooring installation',
-  },
-  {
-    title: 'Bathroom Remodeling',
-    description:
-      'Luxury showers, tile walls, and functional layouts designed for modern living.',
-    image: '/images/bathrooms/bath.jpg',
-    alt: 'Modern bathroom remodeling with custom tile',
-  },
-  {
-    title: 'Custom Tile Work',
-    description:
-      'Decorative accents, backsplashes, and statement feature walls that elevate your space.',
-    image: '/images/bathrooms/bath04.jpg',
-    alt: 'Custom tile installation with premium finish',
-  },
-]
 
 const portfolioPreview = [
   {
-    title: 'Luxury Shower Detail',
-    image: '/images/projects/bath04.jpg',
+    title: 'Luxury Detail',
+    image: '/images/portfolio/bath04.jpg',
   },
   {
-    title: 'Warm Hardwood Finish',
-    image: '/images/projects/floor1.jpg',
+    title: 'Warm Premium Finish',
+    image: '/images/portfolio/floor1.jpg',
   },
   {
-    title: 'Tile Accent Feature',
-    image: '/images/projects/bath03.jpg',
+    title: 'Accent Feature',
+    image: '/images/portfolio/bath03.jpg',
   },
 ]
 
@@ -72,7 +41,7 @@ export default function Home() {
         <div className="absolute inset-0">
           <Image
             src="/images/hero/place_1.jpg"
-            alt="Luxury home interior with premium flooring"
+            alt={`Luxury home interior with premium ${siteConfig.niche}`}
             fill
             priority
             className="object-cover scale-105"
@@ -86,11 +55,11 @@ export default function Home() {
           <div className="max-w-3xl">
 
             <p className="uppercase tracking-[0.45em] text-brand-accent text-sm mb-6">
-              Central Florida Remodeling
+              {siteConfig.region} Remodeling
             </p>
 
             <h1 className="text-4xl md:text-6xl font-semibold leading-tight mb-6">
-              Precision Flooring & Bathroom Remodeling Designed To Last
+              Precision {siteConfig.niche} Designed To Last
             </h1>
 
             <p className="text-lg text-brand-white/90 mb-10 max-w-xl">
@@ -121,9 +90,9 @@ export default function Home() {
 
       {/* SPLASH */}
       <SplashSection
-        imageSrc="/images/bathrooms/bath2.jpg"
+        imageSrc="/images/services/bath2.jpg"
         eyebrow="Luxury Remodeling"
-        heading="Trusted by Central Florida Homeowners"
+        heading={`Trusted by ${siteConfig.region} Homeowners`}
         body="We deliver refined finishes, clean installs, and a streamlined process that respects your home and timeline."
         ctaText="Schedule Consultation"
       />
@@ -132,7 +101,7 @@ export default function Home() {
       <section className="py-20 bg-brand-white">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
-            {trustStats.map((stat) => (
+            {siteConfig.stats.map((stat) => (
               <div
                 key={stat.label}
                 className="rounded-3xl p-8 text-center shadow-xl border border-brand-charcoal/10"
@@ -170,7 +139,7 @@ export default function Home() {
 
           <div className="grid md:grid-cols-3 gap-8">
 
-            {serviceHighlights.map((service) => (
+            {siteConfig.services.map((service) => (
               <div
                 key={service.title}
                 className="group rounded-3xl overflow-hidden bg-brand-white shadow-xl hover:shadow-2xl transition duration-500"
@@ -211,10 +180,10 @@ export default function Home() {
 
       {/* SPLASH */}
       <SplashSection
-        imageSrc="/images/flooring/floor 2.jpg"
-        eyebrow="Crafted Floors"
+        imageSrc="/images/services/floor 2.jpg"
+        eyebrow="Crafted Excellence"
         heading="Precision Installation. Refined Finishes."
-        body="From hardwood to luxury tile, we deliver floors that define the space and elevate everyday living."
+        body="We deliver installations that define the space and elevate everyday living."
         ctaText="Explore Services"
         ctaHref="/services"
       />
@@ -280,9 +249,9 @@ export default function Home() {
 
       {/* FINAL SPLASH */}
       <SplashSection
-        imageSrc="/images/projects/bath04.jpg"
+        imageSrc="/images/portfolio/bath04.jpg"
         eyebrow="Precision Remodeling"
-        heading="Elevate Your Home with Biaggio Flooring"
+        heading={`Elevate Your Home with ${siteConfig.companyName}`}
         body="Schedule a complimentary consultation and receive a detailed estimate tailored to your space."
         ctaText="Request Free Estimate"
       />
@@ -317,7 +286,7 @@ export default function Home() {
 
           <div className="relative h-[420px] rounded-[36px] overflow-hidden shadow-xl">
             <Image
-              src="/images/bathrooms/bath03.jpg"
+              src="/images/services/bath03.jpg"
               alt="Luxury shower with precision tile work"
               fill
               className="object-cover"

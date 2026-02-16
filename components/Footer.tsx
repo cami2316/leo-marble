@@ -1,5 +1,6 @@
 import Image from 'next/image'
 import Link from 'next/link'
+import { siteConfig } from '@/lib/siteConfig'
 
 export default function Footer() {
   return (
@@ -10,8 +11,8 @@ export default function Footer() {
 
         <div className="relative h-[420px] overflow-hidden">
           <Image
-            src="/images/projects/floor1.jpg"
-            alt="Luxury flooring installation"
+            src="/images/portfolio/floor1.jpg"
+            alt="Luxury installation"
             fill
             className="object-cover scale-105"
             sizes="100vw"
@@ -24,11 +25,11 @@ export default function Footer() {
           <div className="max-w-2xl px-6">
 
             <p className="uppercase tracking-[0.4em] text-brand-accent text-sm mb-4">
-              Premium Craftsmanship
+              {siteConfig.tagline}
             </p>
 
             <h2 className="text-3xl md:text-5xl font-semibold leading-tight mb-6">
-              Transform Your Space With Biaggio Flooring
+              Transform Your Space With {siteConfig.companyName}
             </h2>
 
             <Link
@@ -52,13 +53,13 @@ export default function Footer() {
 
             <Image
               src="/logo/logo%20white.svg"
-              alt="Biaggio Flooring"
+              alt={siteConfig.companyName}
               width={180}
               height={50}
             />
 
             <p className="text-sm text-brand-white/80 leading-relaxed">
-              Luxury flooring installation and bathroom remodeling across Central Florida.
+              {siteConfig.niche} across {siteConfig.region}.
               Family-owned. Detail-driven. Built on trust.
             </p>
 
@@ -90,25 +91,25 @@ export default function Footer() {
             </h4>
 
             <ul className="space-y-3 text-brand-white/80">
-              <li>Central Florida</li>
+              <li>{siteConfig.region}</li>
               <li>
-                <a href="tel:3214425003" className="hover:text-brand-accent transition">
-                  321 4425003
+                <a href={`tel:${siteConfig.phone.replace(/\s/g, '')}`} className="hover:text-brand-accent transition">
+                  {siteConfig.phone}
                 </a>
               </li>
               <li>
-                <a href="mailto:biaggioflooringllc@gmail.com" className="hover:text-brand-accent transition">
-                  biaggioflooringllc@gmail.com
+                <a href={`mailto:${siteConfig.email}`} className="hover:text-brand-accent transition">
+                  {siteConfig.email}
                 </a>
               </li>
               <li>
                 <a
-                  href="https://www.instagram.com/biaggioflooring/"
+                  href={siteConfig.instagram.url}
                   target="_blank"
                   rel="noreferrer"
                   className="hover:text-brand-accent transition"
                 >
-                  Instagram: @biaggioflooring
+                  Instagram: {siteConfig.instagram.handle}
                 </a>
               </li>
             </ul>
@@ -121,11 +122,9 @@ export default function Footer() {
             </h4>
 
             <ul className="space-y-3 text-brand-white/80">
-              <li>Orlando</li>
-              <li>Lake Nona</li>
-              <li>Winter Park</li>
-              <li>Celebration</li>
-              <li>Greater Central Florida</li>
+              {siteConfig.serviceAreas.map((area) => (
+                <li key={area}>{area}</li>
+              ))}
             </ul>
           </div>
 
@@ -135,11 +134,11 @@ export default function Footer() {
         <div className="border-t border-brand-white/20 mt-14 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-brand-white/60">
 
           <p>
-            © {new Date().getFullYear()} Biaggio Flooring. All rights reserved.
+            © {new Date().getFullYear()} {siteConfig.companyName}. All rights reserved.
           </p>
 
           <p>
-            Crafted with precision in Central Florida
+            Crafted with precision in {siteConfig.region}
           </p>
 
         </div>
