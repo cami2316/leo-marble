@@ -1,42 +1,48 @@
+'use client'
+
 import Image from 'next/image'
 import Link from 'next/link'
 import { siteConfig } from '@/lib/siteConfig'
+import { useLanguage } from '@/lib/LanguageContext'
+import { Phone, Mail, Instagram } from 'lucide-react'
 
 export default function Footer() {
+  const { t } = useLanguage()
+
   return (
-    <footer className="bg-brand-charcoal text-brand-white">
+    <footer className="bg-[#111111] text-white relative">
 
       {/* CTA IMAGE SECTION */}
       <div className="relative">
 
         <div className="relative h-[420px] overflow-hidden">
           <Image
-            src="/images/portfolio/floor1.jpg"
-            alt="Luxury installation"
+            src="/images/portfolio/LEOWALL08.jpg"
+            alt="Professional marble installation"
             fill
             className="object-cover scale-105"
             sizes="100vw"
           />
 
-          <div className="absolute inset-0 bg-gradient-to-r from-brand-charcoal/95 via-brand-charcoal/80 to-brand-charcoal/95" />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#111111]/95 via-[#111111]/85 to-[#111111]/95" />
         </div>
 
         <div className="absolute inset-0 flex items-center justify-center text-center">
           <div className="max-w-2xl px-6">
 
-            <p className="uppercase tracking-[0.4em] text-brand-accent text-sm mb-4">
-              {siteConfig.tagline}
+            <p className="uppercase tracking-[0.4em] text-[#C9CCD1] text-sm mb-4">
+              {t(siteConfig.tagline)}
             </p>
 
-            <h2 className="text-3xl md:text-5xl font-semibold leading-tight mb-6">
-              Transform Your Space With {siteConfig.companyName}
+            <h2 className="text-3xl md:text-5xl font-bold leading-tight mb-6">
+              {t({ en: 'Transform Your Space With Expert Craftsmanship', es: 'Transforma tu Espacio con Artesanía Experta' })}
             </h2>
 
             <Link
               href="/contact"
-              className="inline-block bg-brand-primary text-white px-9 py-4 rounded-full font-semibold tracking-wide hover:bg-brand-accent transition duration-300 shadow-lg hover:shadow-xl"
+              className="inline-block bg-[#C9CCD1] text-[#111111] px-9 py-4 rounded-full font-semibold tracking-wide hover:bg-white transition duration-300 shadow-lg hover:shadow-xl"
             >
-              Request Your Estimate
+              {t(siteConfig.cta.contactUs)}
             </Link>
 
           </div>
@@ -52,19 +58,18 @@ export default function Footer() {
           <div className="space-y-5">
 
             <Image
-              src="/logo/logo%20white.svg"
+              src="/logo/LOGO TRANSPARENTE.png"
               alt={siteConfig.companyName}
               width={180}
-              height={50}
+              height={60}
             />
 
-            <p className="text-sm text-brand-white/80 leading-relaxed">
-              {siteConfig.niche} across {siteConfig.region}.
-              Family-owned. Detail-driven. Built on trust.
+            <p className="text-sm text-white/80 leading-relaxed">
+              {t(siteConfig.niche)} {t({ en: 'across', es: 'en' })} {t(siteConfig.region)}.
             </p>
 
-            <p className="text-sm text-brand-accent font-medium">
-              Precision • Integrity • Reliability
+            <p className="text-sm text-[#C9CCD1] font-medium">
+              {t(siteConfig.tagline)}
             </p>
 
           </div>
@@ -72,44 +77,46 @@ export default function Footer() {
           {/* NAVIGATION */}
           <div>
             <h4 className="text-lg font-semibold mb-5 tracking-wide">
-              Navigation
+              {t({ en: 'Navigation', es: 'Navegación' })}
             </h4>
 
-            <ul className="space-y-3 text-brand-white/80">
-              <li><Link href="/" className="hover:text-brand-accent transition">Home</Link></li>
-              <li><Link href="/services" className="hover:text-brand-accent transition">Services</Link></li>
-              <li><Link href="/portfolio" className="hover:text-brand-accent transition">Portfolio</Link></li>
-              <li><Link href="/about" className="hover:text-brand-accent transition">About</Link></li>
-              <li><Link href="/contact" className="hover:text-brand-accent transition">Contact</Link></li>
+            <ul className="space-y-3 text-white/80">
+              <li><Link href="/" className="hover:text-[#C9CCD1] transition">{t(siteConfig.nav.home)}</Link></li>
+              <li><Link href="/services" className="hover:text-[#C9CCD1] transition">{t(siteConfig.nav.services)}</Link></li>
+              <li><Link href="/portfolio" className="hover:text-[#C9CCD1] transition">{t(siteConfig.nav.portfolio)}</Link></li>
+              <li><Link href="/about" className="hover:text-[#C9CCD1] transition">{t(siteConfig.nav.about)}</Link></li>
+              <li><Link href="/contact" className="hover:text-[#C9CCD1] transition">{t(siteConfig.nav.contact)}</Link></li>
             </ul>
           </div>
 
           {/* CONTACT */}
           <div>
             <h4 className="text-lg font-semibold mb-5 tracking-wide">
-              Contact
+              {t(siteConfig.nav.contact)}
             </h4>
 
-            <ul className="space-y-3 text-brand-white/80">
-              <li>{siteConfig.region}</li>
-              <li>
-                <a href={`tel:${siteConfig.phone.replace(/\s/g, '')}`} className="hover:text-brand-accent transition">
-                  {siteConfig.phone}
+            <ul className="space-y-3 text-white/80">
+              <li className="flex items-center gap-2">
+                <Phone className="w-4 h-4" />
+                <a href={siteConfig.phoneLink} className="hover:text-[#C9CCD1] transition">
+                  {siteConfig.phoneFormatted}
                 </a>
               </li>
-              <li>
-                <a href={`mailto:${siteConfig.email}`} className="hover:text-brand-accent transition">
+              <li className="flex items-center gap-2">
+                <Mail className="w-4 h-4" />
+                <a href={siteConfig.emailLink} className="hover:text-[#C9CCD1] transition">
                   {siteConfig.email}
                 </a>
               </li>
-              <li>
+              <li className="flex items-center gap-2">
+                <Instagram className="w-4 h-4" />
                 <a
                   href={siteConfig.instagram.url}
                   target="_blank"
                   rel="noreferrer"
-                  className="hover:text-brand-accent transition"
+                  className="hover:text-[#C9CCD1] transition"
                 >
-                  Instagram: {siteConfig.instagram.handle}
+                  {siteConfig.instagram.handle}
                 </a>
               </li>
             </ul>
@@ -118,10 +125,10 @@ export default function Footer() {
           {/* SERVICE AREAS */}
           <div>
             <h4 className="text-lg font-semibold mb-5 tracking-wide">
-              Service Areas
+              {t({ en: 'Service Areas', es: 'Áreas de Servicio' })}
             </h4>
 
-            <ul className="space-y-3 text-brand-white/80">
+            <ul className="space-y-3 text-white/80">
               {siteConfig.serviceAreas.map((area) => (
                 <li key={area}>{area}</li>
               ))}
@@ -131,14 +138,14 @@ export default function Footer() {
         </div>
 
         {/* DIVIDER */}
-        <div className="border-t border-brand-white/20 mt-14 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-brand-white/60">
+        <div className="border-t border-white/20 mt-14 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-white/60">
 
           <p>
-            © {new Date().getFullYear()} {siteConfig.companyName}. All rights reserved.
+            © {new Date().getFullYear()} {siteConfig.companyName}. {t({ en: 'All rights reserved.', es: 'Todos los derechos reservados.' })}
           </p>
 
           <p>
-            Crafted with precision in {siteConfig.region}
+            {t({ en: `Licensed & Insured • Serving ${siteConfig.region.en} since ${siteConfig.establishedYear}`, es: `Con Licencia • Sirviendo ${siteConfig.region.es} desde ${siteConfig.establishedYear}` })}
           </p>
 
         </div>
@@ -148,3 +155,4 @@ export default function Footer() {
     </footer>
   )
 }
+

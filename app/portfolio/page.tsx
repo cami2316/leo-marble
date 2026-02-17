@@ -1,97 +1,123 @@
+'use client'
+
 import Image from 'next/image'
 import Link from 'next/link'
-import type { Metadata } from 'next'
 import Gallery from '@/components/Gallery'
 import { siteConfig } from '@/lib/siteConfig'
-
-export const metadata: Metadata = {
-  title: `Portfolio - Finished ${siteConfig.niche} Projects`,
-  description: `Explore ${siteConfig.companyName}'s completed remodeling projects across ${siteConfig.region}.`,
-}
+import { useLanguage } from '@/lib/LanguageContext'
 
 export default function Portfolio() {
+  const { t } = useLanguage()
 
   const portfolioItems = [
     {
       id: 1,
-      title: 'Warm Living Space',
-      category: 'Services' as const,
-      imageSrc: '/images/services/floor1.jpg',
-      alt: 'Premium installation',
+      title: 'Modern Bathroom Installation',
+      category: 'Bathroom' as const,
+      imageSrc: '/images/portfolio/LEOBATH01.jpg',
+      alt: 'Professional bathroom tile installation',
     },
     {
       id: 2,
-      title: 'Contemporary Installation',
-      category: 'Services' as const,
-      imageSrc: '/images/services/floor 2.jpg',
-      alt: 'Luxury installation',
+      title: 'Luxury Shower Design',
+      category: 'Bathroom' as const,
+      imageSrc: '/images/portfolio/LEOBATH04.jpg',
+      alt: 'Custom shower tile work',
     },
     {
       id: 3,
-      title: 'Statement Details',
-      category: 'Services' as const,
-      imageSrc: '/images/services/floor 03.jpg',
-      alt: 'Decorative finish',
+      title: 'Contemporary Bathroom',
+      category: 'Bathroom' as const,
+      imageSrc: '/images/portfolio/LEOBATH05.jpg',
+      alt: 'Modern bathroom installation',
     },
     {
       id: 4,
-      title: 'Custom Installation',
-      category: 'Services' as const,
-      imageSrc: '/images/services/bath.jpg',
-      alt: 'Luxury remodel',
+      title: 'Premium Bathroom Remodel',
+      category: 'Bathroom' as const,
+      imageSrc: '/images/portfolio/LEOBATH06.jpg',
+      alt: 'Luxury bathroom renovation',
     },
     {
       id: 5,
-      title: 'Spa Inspired Design',
-      category: 'Services' as const,
-      imageSrc: '/images/services/bath2.jpg',
-      alt: 'Premium finishes',
+      title: 'Elegant Bathroom Design',
+      category: 'Bathroom' as const,
+      imageSrc: '/images/portfolio/LEOBATH07.jpg',
+      alt: 'Premium bathroom finishes',
     },
     {
       id: 6,
-      title: 'Modern Statement Wall',
-      category: 'Services' as const,
-      imageSrc: '/images/services/bath03.jpg',
-      alt: 'Wall installation',
+      title: 'Premium Flooring Installation',
+      category: 'Flooring' as const,
+      imageSrc: '/images/portfolio/LEOFLOOR01.jpg',
+      alt: 'Professional floor tile installation',
     },
     {
       id: 7,
-      title: 'Luxury Detail Work',
-      category: 'Services' as const,
-      imageSrc: '/images/services/bath04.jpg',
-      alt: 'Custom details',
+      title: 'Decorative Wall Feature',
+      category: 'Wall' as const,
+      imageSrc: '/images/portfolio/LEOWALL01.jpg',
+      alt: 'Custom wall tile design',
     },
     {
       id: 8,
-      title: 'Completed Project',
-      category: 'Portfolio' as const,
-      imageSrc: '/images/portfolio/floor1.jpg',
-      alt: 'Finished project',
+      title: 'Statement Wall Installation',
+      category: 'Wall' as const,
+      imageSrc: '/images/portfolio/LEOWALL02.jpg',
+      alt: 'Premium wall tile work',
     },
     {
       id: 9,
-      title: 'Finished Remodel',
-      category: 'Portfolio' as const,
-      imageSrc: '/images/portfolio/bath.jpg',
-      alt: 'Completed remodel',
+      title: 'Modern Wall Design',
+      category: 'Wall' as const,
+      imageSrc: '/images/portfolio/LEOWALL04.jpg',
+      alt: 'Contemporary wall installation',
     },
     {
       id: 10,
-      title: 'Custom Installation Project',
-      category: 'Portfolio' as const,
-      imageSrc: '/images/portfolio/bath04.jpg',
-      alt: 'Custom project',
+      title: 'Luxury Wall Feature',
+      category: 'Wall' as const,
+      imageSrc: '/images/portfolio/LEOWALL05.jpg',
+      alt: 'Elegant wall details',
+    },
+    {
+      id: 11,
+      title: 'Custom Wall Project',
+      category: 'Wall' as const,
+      imageSrc: '/images/portfolio/LEOWALL06.jpg',
+      alt: 'Custom wall tile',
+    },
+    {
+      id: 12,
+      title: 'Designer Wall Installation',
+      category: 'Wall' as const,
+      imageSrc: '/images/portfolio/LEOWALL07.jpg',
+      alt: 'Premium wall finishes',
+    },
+    {
+      id: 13,
+      title: 'Contemporary Wall Feature',
+      category: 'Wall' as const,
+      imageSrc: '/images/portfolio/LEOWALL08.jpg',
+      alt: 'Modern wall design',
+    },
+    {
+      id: 14,
+      title: 'Statement Wall Design',
+      category: 'Wall' as const,
+      imageSrc: '/images/portfolio/LEOWALL09.jpg',
+      alt: 'Luxury wall installation',
     },
   ]
 
   return (
     <>
       {/* HERO */}
-      <section className="relative py-28 bg-brand-charcoal text-white overflow-hidden">
+      <section className="relative pt-48 pb-28 bg-brand-charcoal text-white overflow-hidden">
 
         <div className="absolute inset-0">
           <Image
-            src="/images/portfolio/bath04.jpg"
+            src="/images/portfolio/LEOBATH04.jpg"
             alt="Luxury remodeling portfolio"
             fill
             className="object-cover scale-105"
@@ -102,16 +128,21 @@ export default function Portfolio() {
 
         <div className="relative container mx-auto px-4 max-w-3xl">
           <p className="uppercase tracking-[0.45em] text-brand-accent text-sm mb-5">
-            Portfolio
+            {t({ en: 'Portfolio', es: 'Portafolio' })}
           </p>
 
           <h1 className="text-4xl md:text-5xl font-semibold mb-6">
-            Spaces Transformed Through Craftsmanship
+            {t({ 
+              en: 'Spaces Transformed Through Craftsmanship', 
+              es: 'Espacios Transformados con Artesanía' 
+            })}
           </h1>
 
           <p className="text-lg text-white/90">
-            Explore finished projects that showcase our installation standards,
-            design precision, and commitment to premium results.
+            {t({ 
+              en: 'Explore finished projects that showcase our installation standards, design precision, and commitment to premium results.',
+              es: 'Explore proyectos terminados que muestran nuestros estándares de instalación, precisión en diseño y compromiso con resultados premium.' 
+            })}
           </p>
         </div>
 
@@ -122,12 +153,14 @@ export default function Portfolio() {
 
         <div className="container mx-auto px-4 max-w-2xl">
           <h2 className="text-3xl font-semibold text-brand-charcoal mb-6">
-            Signature Project Gallery
+            {t({ en: 'Signature Project Gallery', es: 'Galería de Proyectos' })}
           </h2>
 
           <p className="text-lg text-brand-charcoal">
-            Browse our completed flooring installations and bathroom remodels.
-            Each project reflects careful planning, premium materials, and refined finishing.
+            {t({ 
+              en: 'Browse our completed flooring installations and bathroom remodels. Each project reflects careful planning, premium materials, and refined finishing.',
+              es: 'Explore nuestras instalaciones de pisos y remodelaciones de baños completadas. Cada proyecto refleja planificación cuidadosa, materiales premium y acabados refinados.' 
+            })}
           </p>
         </div>
 
@@ -147,7 +180,7 @@ export default function Portfolio() {
 
           {siteConfig.stats.map((stat) => (
             <div
-              key={stat.label}
+              key={stat.label.en}
               className="rounded-3xl p-8 shadow-premium border border-brand-charcoal/10"
             >
               <div className="text-4xl font-semibold text-brand-primary mb-3">
@@ -155,7 +188,7 @@ export default function Portfolio() {
               </div>
 
               <p className="uppercase tracking-widest text-sm text-brand-charcoal/70">
-                {stat.label}
+                {t(stat.label)}
               </p>
             </div>
           ))}
@@ -170,18 +203,24 @@ export default function Portfolio() {
         <div className="container mx-auto px-4 max-w-2xl">
 
           <h2 className="text-3xl md:text-4xl font-semibold mb-6">
-            Ready To Start Your Own Transformation?
+            {t({ 
+              en: 'Ready To Start Your Own Transformation?', 
+              es: '¿Listo para Comenzar tu Propia Transformación?' 
+            })}
           </h2>
 
           <p className="text-lg text-white/80 mb-10">
-            Schedule a complimentary consultation and receive a detailed remodeling estimate tailored to your home.
+            {t({ 
+              en: 'Schedule a complimentary consultation and receive a detailed remodeling estimate tailored to your home.',
+              es: 'Agenda una consulta gratis y recibe un presupuesto detallado de remodelación adaptado a tu hogar.' 
+            })}
           </p>
 
           <Link
             href="/contact"
             className="inline-block bg-brand-primary px-10 py-4 rounded-full font-semibold hover:bg-brand-accent transition shadow-lg"
           >
-            Request Free Estimate
+            {t(siteConfig.cta.contactUs)}
           </Link>
 
         </div>

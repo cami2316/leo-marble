@@ -1,117 +1,137 @@
+'use client'
+
 import Image from 'next/image'
 import Link from 'next/link'
-import type { Metadata } from 'next'
-import SplashSection from '@/components/SplashSection'
 import { siteConfig } from '@/lib/siteConfig'
-
-export const metadata: Metadata = {
-  title: `${siteConfig.companyName} - ${siteConfig.heroTitle}`,
-  description: siteConfig.heroSubtitle,
-}
+import { useLanguage } from '@/lib/LanguageContext'
+import { Phone, MessageCircle, Mail } from 'lucide-react'
 
 const portfolioPreview = [
   {
-    title: 'Luxury Detail',
-    image: '/images/portfolio/bath04.jpg',
+    title: 'LEO BATH 04',
+    image: '/images/portfolio/LEOBATH04.jpg',
   },
   {
-    title: 'Warm Premium Finish',
-    image: '/images/portfolio/floor1.jpg',
+    title: 'LEO WALL 01',
+    image: '/images/portfolio/LEOWALL01.jpg',
   },
   {
-    title: 'Accent Feature',
-    image: '/images/portfolio/bath03.jpg',
+    title: 'LEO WALL 02',
+    image: '/images/portfolio/LEOWALL02.jpg',
   },
-]
-
-const differentiators = [
-  'Family owned and relationship focused',
-  'Premium craftsmanship on every detail',
-  'Transparent pricing and written estimates',
-  'Reliable scheduling with clear timelines',
-  'Detail-focused installation standards',
+  {
+    title: 'LEO BATH 05',
+    image: '/images/portfolio/LEOBATH05.jpg',
+  },
+  {
+    title: 'LEO FLOOR 01',
+    image: '/images/portfolio/LEOFLOOR01.jpg',
+  },
+  {
+    title: 'LEO BATH 06',
+    image: '/images/portfolio/LEOBATH06.jpg',
+  },
 ]
 
 export default function Home() {
+  const { t } = useLanguage()
+
   return (
     <>
       {/* HERO */}
-      <section className="relative min-h-screen overflow-hidden bg-brand-charcoal text-brand-white">
+      <section className="relative min-h-screen overflow-hidden bg-[#111111] text-white">
 
         <div className="absolute inset-0">
           <Image
-            src="/images/hero/place_1.jpg"
-            alt={`Luxury home interior with premium ${siteConfig.niche}`}
+            src="/images/hero/LEOBATH02.jpg"
+            alt="Professional tile and marble installation"
             fill
             priority
             className="object-cover scale-105"
             sizes="100vw"
           />
 
-          <div className="absolute inset-0 bg-gradient-to-r from-brand-charcoal/90 via-brand-charcoal/70 to-brand-charcoal/90" />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#111111]/95 via-[#111111]/85 to-[#111111]/95" />
         </div>
 
-        <div className="relative container mx-auto px-4 py-32">
-          <div className="max-w-3xl">
+        <div className="relative container mx-auto px-4 pt-48 pb-32 min-h-screen flex items-center">
+          <div className="max-w-4xl">
 
-            <p className="uppercase tracking-[0.45em] text-brand-accent text-sm mb-6">
-              {siteConfig.region} Remodeling
-            </p>
-
-            <h1 className="text-4xl md:text-6xl font-semibold leading-tight mb-6">
-              Precision {siteConfig.niche} Designed To Last
+            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold leading-tight mb-6">
+              {t(siteConfig.heroTitle)}
             </h1>
 
-            <p className="text-lg text-brand-white/90 mb-10 max-w-xl">
-              Premium installations delivered with refined craftsmanship,
-              clear communication, and dependable scheduling.
+            <p className="text-lg md:text-xl text-white/90 mb-10 max-w-3xl leading-relaxed">
+              {t(siteConfig.heroSubtitle)}
             </p>
 
+            {/* Trust Bar */}
+            <div className="mb-10 p-4 bg-white/10 backdrop-blur-sm rounded-2xl inline-block">
+              <p className="text-sm md:text-base text-white/90">
+                {t(siteConfig.trustBar)}
+              </p>
+            </div>
+
+            {/* CTA Buttons */}
             <div className="flex flex-wrap gap-4">
 
-              <Link
-                href="/contact"
-                className="bg-brand-primary px-9 py-4 rounded-full font-semibold hover:bg-brand-accent transition shadow-lg"
+              <a
+                href={siteConfig.phoneLink}
+                className="flex items-center gap-2 bg-[#C9CCD1] text-[#111111] px-8 py-4 rounded-full font-semibold hover:bg-white transition shadow-lg"
               >
-                Request Free Estimate
-              </Link>
+                <Phone className="w-5 h-5" />
+                {t(siteConfig.cta.callNow)}
+              </a>
 
-              <Link
-                href="/portfolio"
-                className="border border-brand-white px-9 py-4 rounded-full font-semibold hover:border-brand-accent hover:text-brand-accent transition"
+              <a
+                href={siteConfig.whatsappLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 bg-[#25D366] text-white px-8 py-4 rounded-full font-semibold hover:bg-[#20BA5A] transition shadow-lg"
               >
-                View Portfolio
-              </Link>
+                <MessageCircle className="w-5 h-5" />
+                {t(siteConfig.cta.whatsapp)}
+              </a>
+
+              <a
+                href={siteConfig.emailLink}
+                className="flex items-center gap-2 border-2 border-white text-white px-8 py-4 rounded-full font-semibold hover:bg-white hover:text-[#111111] transition"
+              >
+                <Mail className="w-5 h-5" />
+                {t(siteConfig.cta.email)}
+              </a>
 
             </div>
           </div>
         </div>
       </section>
 
-      {/* SPLASH */}
-      <SplashSection
-        imageSrc="/images/services/bath2.jpg"
-        eyebrow="Luxury Remodeling"
-        heading={`Trusted by ${siteConfig.region} Homeowners`}
-        body="We deliver refined finishes, clean installs, and a streamlined process that respects your home and timeline."
-        ctaText="Schedule Consultation"
-      />
-
       {/* TRUST STATS */}
-      <section className="py-20 bg-brand-white">
-        <div className="container mx-auto px-4">
+      <section className="py-20 bg-[#F2F2F2] relative">
+        
+        {/* Marble Background Pattern */}
+        <div className="absolute inset-0 opacity-30">
+          <Image
+            src="/images/BACKGROUND/Leo Marble backgorund.png"
+            alt=""
+            fill
+            className="object-cover"
+          />
+        </div>
+
+        <div className="relative container mx-auto px-4">
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
-            {siteConfig.stats.map((stat) => (
+            {siteConfig.stats.map((stat, index) => (
               <div
-                key={stat.label}
-                className="rounded-3xl p-8 text-center shadow-xl border border-brand-charcoal/10"
+                key={index}
+                className="rounded-3xl p-8 text-center shadow-xl bg-white/80 backdrop-blur-sm border border-[#C9CCD1]/30"
               >
-                <div className="text-4xl font-semibold text-brand-primary mb-3">
+                <div className="text-4xl font-bold text-[#111111] mb-3">
                   {stat.value}
                 </div>
 
-                <p className="uppercase tracking-widest text-sm text-brand-charcoal/70">
-                  {stat.label}
+                <p className="uppercase tracking-widest text-sm text-[#111111]/70">
+                  {t(stat.label)}
                 </p>
               </div>
             ))}
@@ -120,31 +140,42 @@ export default function Home() {
       </section>
 
       {/* SERVICES */}
-      <section className="py-20 bg-brand-white">
-        <div className="container mx-auto px-4">
+      <section className="py-20 bg-white relative">
+
+        {/* Subtle marble pattern */}
+        <div className="absolute inset-0 opacity-10">
+          <Image
+            src="/images/BACKGROUND/Leo Marble backgorund.png"
+            alt=""
+            fill
+            className="object-cover"
+          />
+        </div>
+
+        <div className="relative container mx-auto px-4">
 
           <div className="text-center mb-14">
-            <p className="uppercase tracking-[0.35em] text-brand-charcoal mb-3">
-              Services
+            <p className="uppercase tracking-[0.35em] text-[#111111] mb-3">
+              {t(siteConfig.nav.services)}
             </p>
 
-            <h2 className="text-3xl md:text-4xl font-semibold text-brand-charcoal mb-4">
-              Premium Remodeling Services
+            <h2 className="text-3xl md:text-5xl font-bold text-[#111111] mb-4">
+              {t({ en: 'Professional Services', es: 'Servicios Profesionales' })}
             </h2>
 
-            <p className="text-lg text-brand-charcoal max-w-2xl mx-auto">
-              Expert installation, refined materials, and a process built on clarity and trust.
+            <p className="text-lg text-[#111111]/80 max-w-2xl mx-auto">
+              {t({ en: 'Expert installation with precision cutting and flawless finishing for luxury interiors.', es: 'Instalación profesional con cortes precisos y acabados impecables para interiores de lujo.' })}
             </p>
           </div>
 
           <div className="grid md:grid-cols-3 gap-8">
 
-            {siteConfig.services.map((service) => (
+            {siteConfig.services.map((service, index) => (
               <div
-                key={service.title}
-                className="group rounded-3xl overflow-hidden bg-brand-white shadow-xl hover:shadow-2xl transition duration-500"
+                key={index}
+                className="group rounded-3xl overflow-hidden bg-white shadow-xl hover:shadow-2xl transition duration-500"
               >
-                <div className="relative h-56">
+                <div className="relative h-64">
                   <Image
                     src={service.image}
                     alt={service.alt}
@@ -152,24 +183,17 @@ export default function Home() {
                     className="object-cover transition-transform duration-500 group-hover:scale-105"
                   />
 
-                  <div className="absolute inset-0 bg-gradient-to-t from-brand-charcoal/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#111111]/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition" />
                 </div>
 
                 <div className="p-6">
-                  <h3 className="text-xl font-semibold text-brand-charcoal mb-3">
-                    {service.title}
+                  <h3 className="text-2xl font-bold text-[#111111] mb-3">
+                    {t(service.title)}
                   </h3>
 
-                  <p className="text-brand-charcoal mb-5">
-                    {service.description}
+                  <p className="text-[#111111]/80 text-base leading-relaxed">
+                    {t(service.description)}
                   </p>
-
-                  <Link
-                    href="/services"
-                    className="text-brand-primary font-semibold hover:text-brand-accent transition-colors"
-                  >
-                    Learn More →
-                  </Link>
                 </div>
               </div>
             ))}
@@ -178,119 +202,256 @@ export default function Home() {
         </div>
       </section>
 
-      {/* SPLASH */}
-      <SplashSection
-        imageSrc="/images/services/floor 2.jpg"
-        eyebrow="Crafted Excellence"
-        heading="Precision Installation. Refined Finishes."
-        body="We deliver installations that define the space and elevate everyday living."
-        ctaText="Explore Services"
-        ctaHref="/services"
-      />
+      {/* ABOUT SECTION */}
+      <section className="py-20 bg-[#F2F2F2] relative">
+        
+        <div className="absolute inset-0 opacity-30">
+          <Image
+            src="/images/BACKGROUND/Leo Marble backgorund.png"
+            alt=""
+            fill
+            className="object-cover"
+          />
+        </div>
 
-      {/* PORTFOLIO */}
-      <section className="py-20 bg-brand-white">
+        <div className="relative container mx-auto px-4 grid lg:grid-cols-2 gap-12 items-center">
 
-        <div className="container mx-auto px-4">
+          <div className="relative h-[500px] rounded-3xl overflow-hidden shadow-2xl">
+            <Image
+              src="/images/portfolio/LEOBATH07.jpg"
+              alt="Professional tile and marble installation"
+              fill
+              className="object-cover"
+            />
+          </div>
 
-          <div className="text-center mb-12">
-            <p className="uppercase tracking-[0.35em] text-brand-charcoal mb-3">
-              Portfolio
+          <div>
+            <p className="uppercase tracking-[0.35em] text-[#111111] mb-3">
+              {t({ en: 'About Us', es: 'Acerca de Nosotros' })}
             </p>
 
-            <h2 className="text-3xl md:text-4xl font-semibold text-brand-charcoal mb-4">
-              Featured Projects
+            <h2 className="text-3xl md:text-5xl font-bold text-[#111111] mb-6">
+              {siteConfig.companyName}
             </h2>
 
-            <p className="text-lg text-brand-charcoal max-w-2xl mx-auto">
-              Signature projects showcasing our installation standards.
+            <p className="text-lg text-[#111111]/80 mb-8 leading-relaxed">
+              {t(siteConfig.about)}
+            </p>
+
+            <div className="flex flex-wrap gap-4">
+              <a
+                href={siteConfig.phoneLink}
+                className="flex items-center gap-2 bg-[#111111] text-white px-6 py-3 rounded-full font-semibold hover:bg-[#C9CCD1] hover:text-[#111111] transition"
+              >
+                <Phone className="w-5 h-5" />
+                {t(siteConfig.cta.callNow)}
+              </a>
+
+              <Link
+                href="/portfolio"
+                className="flex items-center gap-2 border-2 border-[#111111] text-[#111111] px-6 py-3 rounded-full font-semibold hover:bg-[#111111] hover:text-white transition"
+              >
+                {t(siteConfig.cta.viewPortfolio)}
+              </Link>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      {/* DIFFERENTIALS */}
+      <section className="py-20 bg-white relative">
+
+        <div className="absolute inset-0 opacity-10">
+          <Image
+            src="/images/BACKGROUND/Leo Marble backgorund.png"
+            alt=""
+            fill
+            className="object-cover"
+          />
+        </div>
+
+        <div className="relative container mx-auto px-4">
+
+          <div className="text-center mb-14">
+            <p className="uppercase tracking-[0.35em] text-[#111111] mb-3">
+              {t({ en: 'Why Choose Us', es: 'Por Qué Elegirnos' })}
+            </p>
+
+            <h2 className="text-3xl md:text-5xl font-bold text-[#111111] mb-4">
+              {t({ en: 'What Sets Us Apart', es: 'Lo Que Nos Distingue' })}
+            </h2>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
+            {siteConfig.differentials.map((item, index) => (
+              <div key={index} className="flex gap-4 p-6 bg-[#F2F2F2] rounded-2xl shadow-md hover:shadow-lg transition">
+                <span className="mt-1 h-3 w-3 rounded-full bg-[#C9CCD1] flex-shrink-0" />
+                <p className="text-[#111111] font-medium">
+                  {t(item.title)}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* PORTFOLIO */}
+      <section className="py-20 bg-[#F2F2F2] relative">
+
+        <div className="absolute inset-0 opacity-30">
+          <Image
+            src="/images/BACKGROUND/Leo Marble backgorund.png"
+            alt=""
+            fill
+            className="object-cover"
+          />
+        </div>
+
+        <div className="relative container mx-auto px-4">
+
+          <div className="text-center mb-12">
+            <p className="uppercase tracking-[0.35em] text-[#111111] mb-3">
+              {t(siteConfig.nav.portfolio)}
+            </p>
+
+            <h2 className="text-3xl md:text-5xl font-bold text-[#111111] mb-4">
+              {t({ en: 'Featured Projects', es: 'Proyectos Destacados' })}
+            </h2>
+
+            <p className="text-lg text-[#111111]/80 max-w-2xl mx-auto">
+              {t({ en: 'Signature projects showcasing our installation standards and attention to detail.', es: 'Proyectos destacados que muestran nuestros estándares de instalación y atención al detalle.' })}
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
 
-            {portfolioPreview.map((project) => (
+            {portfolioPreview.map((project, index) => (
               <div
-                key={project.title}
-                className="group relative overflow-hidden rounded-3xl shadow-lg"
+                key={index}
+                className="group relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500"
               >
-                <div className="relative h-72">
+                <div className="relative h-80">
                   <Image
                     src={project.image}
                     alt={project.title}
                     fill
-                    className="object-cover transition-transform duration-500 group-hover:scale-105"
+                    className="object-cover transition-transform duration-500 group-hover:scale-110"
                   />
 
-                  <div className="absolute inset-0 bg-gradient-to-t from-brand-charcoal/90 via-brand-charcoal/40 to-transparent opacity-0 group-hover:opacity-100 transition duration-500" />
-                </div>
-
-                <div className="absolute inset-0 flex items-end p-6 opacity-0 group-hover:opacity-100 transition">
-                  <h3 className="text-lg font-semibold text-white">
-                    {project.title}
-                  </h3>
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#111111]/90 via-[#111111]/40 to-transparent opacity-60 group-hover:opacity-90 transition duration-500" />
                 </div>
               </div>
             ))}
 
           </div>
 
-          <div className="mt-10 text-center">
+          <div className="mt-12 text-center">
             <Link
               href="/portfolio"
-              className="inline-flex bg-brand-primary text-white px-7 py-3 rounded-full font-semibold hover:bg-brand-accent transition"
+              className="inline-flex bg-[#111111] text-white px-8 py-4 rounded-full font-semibold hover:bg-[#C9CCD1] hover:text-[#111111] transition shadow-lg"
             >
-              View Full Portfolio
+              {t(siteConfig.cta.viewPortfolio)}
             </Link>
           </div>
 
         </div>
       </section>
 
-      {/* FINAL SPLASH */}
-      <SplashSection
-        imageSrc="/images/portfolio/bath04.jpg"
-        eyebrow="Precision Remodeling"
-        heading={`Elevate Your Home with ${siteConfig.companyName}`}
-        body="Schedule a complimentary consultation and receive a detailed estimate tailored to your space."
-        ctaText="Request Free Estimate"
-      />
+      {/* AREAS WE SERVE */}
+      <section className="py-20 bg-white relative">
 
-      {/* WHY CHOOSE */}
-      <section className="py-20 bg-brand-white">
+        <div className="absolute inset-0 opacity-10">
+          <Image
+            src="/images/BACKGROUND/Leo Marble backgorund.png"
+            alt=""
+            fill
+            className="object-cover"
+          />
+        </div>
 
-        <div className="container mx-auto px-4 grid lg:grid-cols-2 gap-12 items-center">
+        <div className="relative container mx-auto px-4 text-center">
 
-          <div>
-            <p className="uppercase tracking-[0.35em] text-brand-charcoal mb-3">
-              Why Choose Us
-            </p>
+          <p className="uppercase tracking-[0.35em] text-[#111111] mb-3">
+            {t({ en: 'Service Areas', es: 'Áreas de Servicio' })}
+          </p>
 
-            <h2 className="text-3xl md:text-4xl font-semibold text-brand-charcoal mb-6">
-              Trusted Craftsmanship, Clear Communication
-            </h2>
+          <h2 className="text-3xl md:text-5xl font-bold text-[#111111] mb-8">
+            {t({ en: 'Serving Central Florida', es: 'Atendiendo el Centro de Florida' })}
+          </h2>
 
-            <p className="text-lg text-brand-charcoal mb-8">
-              We guide every project with transparency, detailed planning, and a commitment to premium finishes.
-            </p>
-
-            <ul className="space-y-4">
-              {differentiators.map((item) => (
-                <li key={item} className="flex gap-3 text-brand-charcoal">
-                  <span className="mt-2 h-2.5 w-2.5 rounded-full bg-brand-primary" />
-                  {item}
-                </li>
-              ))}
-            </ul>
+          <div className="flex flex-wrap justify-center gap-4 max-w-3xl mx-auto">
+            {siteConfig.serviceAreas.map((area) => (
+              <span
+                key={area}
+                className="px-6 py-3 bg-[#F2F2F2] text-[#111111] rounded-full font-semibold shadow-md"
+              >
+                {area}
+              </span>
+            ))}
           </div>
 
-          <div className="relative h-[420px] rounded-[36px] overflow-hidden shadow-xl">
-            <Image
-              src="/images/services/bath03.jpg"
-              alt="Luxury shower with precision tile work"
-              fill
-              className="object-cover"
-            />
+        </div>
+      </section>
+
+      {/* FINAL CTA */}
+      <section className="py-20 bg-[#111111] text-white relative overflow-hidden">
+        
+        <div className="absolute inset-0 opacity-20">
+          <Image
+            src="/images/portfolio/LEOWALL07.jpg"
+            alt=""
+            fill
+            className="object-cover"
+          />
+        </div>
+
+        <div className="relative container mx-auto px-4 text-center">
+
+          <h2 className="text-3xl md:text-5xl font-bold mb-6">
+            {t({ en: 'Ready to Start Your Project?', es: '¿Listo para Empezar tu Proyecto?' })}
+          </h2>
+
+          <p className="text-xl text-white/90 mb-10 max-w-2xl mx-auto">
+            {t(siteConfig.contact.heading)}
+          </p>
+
+          <div className="flex flex-wrap justify-center gap-4">
+            
+            <a
+              href={siteConfig.phoneLink}
+              className="flex items-center gap-2 bg-white text-[#111111] px-8 py-4 rounded-full font-semibold hover:bg-[#C9CCD1] transition shadow-lg text-lg"
+            >
+              <Phone className="w-5 h-5" />
+              {siteConfig.phoneFormatted}
+            </a>
+
+            <a
+              href={siteConfig.whatsappLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 bg-[#25D366] text-white px-8 py-4 rounded-full font-semibold hover:bg-[#20BA5A] transition shadow-lg text-lg"
+            >
+              <MessageCircle className="w-5 h-5" />
+              WhatsApp
+            </a>
+
+            <a
+              href={siteConfig.emailLink}
+              className="flex items-center gap-2 border-2 border-white text-white px-8 py-4 rounded-full font-semibold hover:bg-white hover:text-[#111111] transition text-lg"
+            >
+              <Mail className="w-5 h-5" />
+              Email
+            </a>
+
+          </div>
+
+          <div className="mt-10 pt-10 border-t border-white/20">
+            <p className="text-white/80">
+              <a href={`mailto:${siteConfig.email}`} className="hover:text-[#C9CCD1] transition">{siteConfig.email}</a>
+              {' • '}
+              <a href={siteConfig.instagram.url} target="_blank" rel="noopener noreferrer" className="hover:text-[#C9CCD1] transition">{siteConfig.instagram.handle}</a>
+            </p>
           </div>
 
         </div>

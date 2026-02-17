@@ -5,11 +5,14 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import { siteConfig } from '@/lib/siteConfig'
+import { useLanguage } from '@/lib/LanguageContext'
+import LanguageToggle from './LanguageToggle'
 
 export default function Header() {
   const pathname = usePathname()
   const [isScrolled, setIsScrolled] = useState(false)
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const { t } = useLanguage()
 
   useEffect(() => {
     const onScroll = () => setIsScrolled(window.scrollY > 40)
@@ -18,11 +21,11 @@ export default function Header() {
   }, [])
 
   const navLinks = [
-    { name: 'Home', href: '/' },
-    { name: 'Services', href: '/services' },
-    { name: 'Portfolio', href: '/portfolio' },
-    { name: 'About', href: '/about' },
-    { name: 'Contact', href: '/contact' },
+    { name: siteConfig.nav.home, href: '/' },
+    { name: siteConfig.nav.services, href: '/services' },
+    { name: siteConfig.nav.portfolio, href: '/portfolio' },
+    { name: siteConfig.nav.about, href: '/about' },
+    { name: siteConfig.nav.contact, href: '/contact' },
   ]
 
   return (
@@ -30,8 +33,8 @@ export default function Header() {
       className={`
         fixed w-full top-0 z-50 transition-all duration-500
         ${isScrolled
-          ? 'bg-brand-charcoal/90 backdrop-blur-lg shadow-lg py-3'
-          : 'bg-transparent py-5'}
+          ? 'bg-brand-charcoal/90 backdrop-blur-lg shadow-lg py-2'
+          : 'bg-transparent py-4'}
       `}
     >
       <nav className="container mx-auto px-6 flex justify-between items-center">
@@ -39,17 +42,17 @@ export default function Header() {
         {/* Logo */}
         <Link href="/" className="relative flex items-center">
           <Image
-            src="/logo/logo%20white.svg"
+            src="/logo/LOGO TRANSPARENTE.png"
             alt={siteConfig.companyName}
-            width={isScrolled ? 140 : 160}
-            height={50}
+            width={isScrolled ? 170 : 200}
+            height={60}
             className="transition-all duration-300"
             priority
           />
         </Link>
 
         {/* Desktop Menu */}
-        <ul className="hidden md:flex items-center gap-10">
+        <ul className="hidden lg:flex items-center gap-8">
 
           {navLinks.map((link) => (
             <li key={link.href}>
@@ -62,7 +65,7 @@ export default function Header() {
                     : 'text-white hover:text-brand-accent'}
                 `}
               >
-                {link.name}
+                {t(link.name)}
 
                 {/* Active underline */}
                 {pathname === link.href && (
@@ -72,30 +75,32 @@ export default function Header() {
             </li>
           ))}
 
+          {/* Language Toggle */}
+          <LanguageToggle />
+
           {/* CTA */}
           <Link
             href="/contact"
             className="
-              ml-4
-              bg-brand-primary
-              text-white
+              bg-[#C9CCD1]
+              text-[#111111]
               px-6 py-3
               rounded-full
               font-semibold
               tracking-wide
-              hover:bg-brand-accent
+              hover:bg-brand-accent hover:text-white
               transition-all
               shadow-md hover:shadow-xl
             "
           >
-            Request Estimate
+            {t(siteConfig.cta.contactUs)}
           </Link>
 
         </ul>
 
         {/* Mobile Button */}
         <button
-          className="md:hidden text-white"
+          className="lg:hidden text-white"
           onClick={() => setIsMenuOpen(!isMenuOpen)}
         >
           <svg className="w-7 h-7" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
@@ -108,11 +113,9 @@ export default function Header() {
       </nav>
 
       {/* Mobile Menu */}
-      <div
-        className={`
-          md:hidden absolute w-full bg-brand-charcoal backdrop-blur-lg
+      <div className={`lg:hidden absolute w-full bg-brand-charcoal backdrop-blur-lg
           transition-all duration-500 overflow-hidden
-          ${isMenuOpen ? 'max-h-[400px] py-6' : 'max-h-0'}
+          ${isMenuOpen ? 'max-h-[500px] py-6' : 'max-h-0'}
         `}
       >
         <ul className="flex flex-col items-center gap-6">
@@ -124,25 +127,28 @@ export default function Header() {
                 onClick={() => setIsMenuOpen(false)}
                 className="text-white text-lg hover:text-brand-accent transition"
               >
-                {link.name}
+                {t(link.name)}
               </Link>
             </li>
           ))}
+
+          {/* Language Toggle Mobile */}
+          <LanguageToggle />
 
           <Link
             href="/contact"
             onClick={() => setIsMenuOpen(false)}
             className="
-              bg-brand-primary
-              text-white
+              bg-[#C9CCD1]
+              text-[#111111]
               px-8 py-3
               rounded-full
               font-semibold
-              hover:bg-brand-accent
+              hover:bg-brand-accent hover:text-white
               transition
             "
           >
-            Request Estimate
+            {t(siteConfig.cta.contactUs)}
           </Link>
 
         </ul>

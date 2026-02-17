@@ -4,6 +4,8 @@ import './globals.css'
 
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
+import FloatingContactButtons from '@/components/FloatingContactButtons'
+import { LanguageProvider } from '@/lib/LanguageContext'
 import { siteConfig } from '@/lib/siteConfig'
 
 const displayFont = Playfair_Display({
@@ -18,24 +20,34 @@ const bodyFont = Source_Sans_3({
   weight: ['400', '500', '600'],
 })
 
+export const viewport = {
+  width: 'device-width',
+  initialScale: 1,
+}
+
 export const metadata: Metadata = {
+  metadataBase: new URL(siteConfig.siteUrl || 'http://localhost:3000'),
+  
   title: {
-    default: `${siteConfig.companyName} | ${siteConfig.heroTitle}`,
+    default: `${siteConfig.companyName} | ${siteConfig.heroTitle.en}`,
     template: `%s | ${siteConfig.companyName}`,
   },
 
-  description: siteConfig.heroSubtitle,
+  description: siteConfig.heroSubtitle.en,
 
   keywords: [
-    `${siteConfig.niche} ${siteConfig.city}`,
-    `${siteConfig.niche} ${siteConfig.region}`,
-    'tile installation',
-    'premium remodeling',
+    'tile installation Orlando',
+    'marble installation Central Florida',
+    'tile contractor Orlando FL',
+    'marble flooring Tampa',
+    'shower tile installer Florida',
+    'porcelain tile installation Orlando',
+    'Carrara marble installer Florida',
   ],
 
   openGraph: {
     title: siteConfig.companyName,
-    description: siteConfig.heroSubtitle,
+    description: siteConfig.heroSubtitle.en,
     url: siteConfig.siteUrl,
     siteName: siteConfig.companyName,
     images: [
@@ -48,11 +60,6 @@ export const metadata: Metadata = {
     locale: 'en_US',
     type: 'website',
   },
-
-  viewport: {
-    width: 'device-width',
-    initialScale: 1,
-  },
 }
 
 export default function RootLayout({
@@ -61,23 +68,25 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html
-      lang="en"
-      className={`${displayFont.variable} ${bodyFont.variable} scroll-smooth`}
-    >
-      <body className="bg-brand-white text-brand-charcoal antialiased">
+    <html lang="en">
+      <body className={`${displayFont.variable} ${bodyFont.variable} antialiased`}>
+        <LanguageProvider>
+          
+          {/* HEADER */}
+          <Header />
 
-        {/* HEADER */}
-        <Header />
+          {/* PAGE CONTENT */}
+          <main className="min-h-screen flex flex-col">
+            {children}
+          </main>
 
-        {/* PAGE CONTENT */}
-        <main className="min-h-screen flex flex-col">
-          {children}
-        </main>
+          {/* FOOTER */}
+          <Footer />
 
-        {/* FOOTER */}
-        <Footer />
+          {/* FLOATING CONTACT BUTTONS */}
+          <FloatingContactButtons />
 
+        </LanguageProvider>
       </body>
     </html>
   )

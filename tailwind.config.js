@@ -9,11 +9,16 @@ module.exports = {
     extend: {
       colors: {
         brand: {
-          primary: '#46C038',
-          accent: '#4FF233',
-          charcoal: '#212121',
-          black: '#000000',
-          white: '#FFFFFF',
+          // Leo Marble Installation Colors
+          'marble-white': '#F2F2F2',
+          'silver': '#C9CCD1',
+          'charcoal': '#111111',
+          
+          // Legacy colors for compatibility
+          primary: '#C9CCD1',
+          accent: '#46C038',
+          black: '#111111',
+          white: '#F2F2F2',
         },
       },
       keyframes: {
@@ -34,3 +39,4 @@ module.exports = {
   },
   plugins: [],
 }
+

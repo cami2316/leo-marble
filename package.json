@@ -1,7 +1,7 @@
 {
-  "name": "biaggioflooring",
+  "name": "leo-marble-installation",
   "version": "1.0.0",
-  "description": "",
+  "description": "Professional tile and marble installation website for Leo Marble Installation LLC",
   "main": "index.js",
   "scripts": {
     "dev": "next dev",
@@ -11,16 +11,17 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/cami2316/biaggioflooring.git"
+    "url": "git+https://github.com/cami2316/template-site-base-1.git"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": ["tile", "marble", "installation", "florida", "orlando"],
+  "author": "Leo Marble Installation LLC",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/cami2316/biaggioflooring/issues"
+    "url": "https://github.com/cami2316/template-site-base-1/issues"
   },
-  "homepage": "https://github.com/cami2316/biaggioflooring#readme",
+  "homepage": "https://github.com/cami2316/template-site-base-1#readme",
   "dependencies": {
+    "lucide-react": "^0.344.0",
     "next": "^16.1.6",
     "react": "^19.2.4",
     "react-dom": "^19.2.4"
