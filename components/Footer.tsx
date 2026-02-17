@@ -58,7 +58,7 @@ export default function Footer() {
           <div className="space-y-5">
 
             <Image
-              src="/logo/LOGO TRANSPARENTE.png"
+              src="/logo/LOGOTRANSPARENTE.png"
               alt={siteConfig.companyName}
               width={180}
               height={60}
